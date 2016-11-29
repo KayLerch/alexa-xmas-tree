@@ -1,5 +1,7 @@
 ## An Alexa-controlled Christmas Tree
 
+![](docs/hardware-setup.png)
+
 Here you can find the sources of a custom Alexa skill that controls an LED strand on a Christmas
 tree. This repo contains:
 * Java code for an AWS Lambda function which is the endpoint for the Alexa skill
