@@ -53,54 +53,75 @@ void setup() {
   Serial.println(curr_version);
 
   while(success_connect == false) {
-     if((rc = myClient.setup(AWS_IOT_CLIENT_ID, true, MQTTv311, true)) == 0) {
+     connect();
+  }
+}
+
+void reconnect() {
+  myClient.disconnect();
+  success_connect = false;
+  while(success_connect == false) {
+     connect();
+  }
+}
+
+void connect() {
+  if((rc = myClient.setup(AWS_IOT_CLIENT_ID, true, MQTTv311, true)) == 0) {
       if((rc = myClient.configWss(AWS_IOT_MQTT_HOST, AWS_IOT_MQTT_PORT, AWS_IOT_ROOT_CA_PATH)) == 0) {
         if((rc = myClient.connect()) == 0) {
           success_connect = true;
   
           // indicate success with green lights
-          changeColor(0, 255, 0, 0);
+          strip.setPixelColor(0, strip.Color(0, 255, 0));
+          strip.show();
           delay(1000);
-          changeColor(0, 0, 0, 0);
+          strip.setPixelColor(0, strip.Color(0, 0, 0));
+          strip.show();
           
           print_log("shadow init", myClient.shadow_init(AWS_IOT_MY_THING_NAME));
           print_log("register thing shadow delta function", myClient.shadow_register_delta_func(AWS_IOT_MY_THING_NAME, msg_callback_delta));
         }
         else {
           // indicate error with red lights
-          changeColor(255, 0, 0, 0);
+          strip.setPixelColor(0, strip.Color(255, 0, 0));
+          strip.show();
           delay(1000);
-          changeColor(0, 0, 0, 0);
+          strip.setPixelColor(0, strip.Color(0, 0, 0));
+          strip.show();
           Serial.println(F("Connect failed!"));
           Serial.println(rc);
         }
       }
       else {
         // indicate error with red lights
-        changeColor(255, 0, 0, 0);
+        strip.setPixelColor(0, strip.Color(255, 0, 0));
+        strip.show();
         delay(1000);
-        changeColor(0, 0, 0, 0);
+        strip.setPixelColor(0, strip.Color(0, 0, 0));
+        strip.show();
         Serial.println(F("Config failed!"));
         Serial.println(rc);
       }
     }
     else {
       // indicate error with red lights
-      changeColor(255, 0, 0, 0);
+      strip.setPixelColor(0, strip.Color(255, 0, 0));
+      strip.show();
       delay(1000);
-      changeColor(0, 0, 0, 0);
+      strip.setPixelColor(0, strip.Color(0, 0, 0));
+      strip.show();
       Serial.println(F("Setup failed!"));
       Serial.println(rc);
     }
     // Delay to make sure SUBACK is received, delay time could vary according to the server
     delay(2000); 
-  }
 }
 
 void loop() {
   if(success_connect) {
     if(myClient.yield()) {
       Serial.println(F("Yield failed."));
+      reconnect();
     }
     delay(1000); // check for incoming delta per 100 ms
     //Serial.println(F("Looping..."));
@@ -251,67 +272,5 @@ void changeColorBackwardsPartial(uint8_t r, uint8_t g, uint8_t b, int delayMs, i
     }
   }
   strip.show();
-}
-
-// Basic callback function that prints out the message
-void msg_callback(char* src, unsigned int len, Message_status_t flag) {
-  if(flag == STATUS_NORMAL) {
-    Serial.println("CALLBACK:");
-    int i;
-    for(i = 0; i < (int)(len); i++) {
-      Serial.print(src[i]);
-    }
-    Serial.println("");
-  }
-}
-
-// Slightly different, this makes the rainbow equally distributed throughout
-void rainbowCycle(uint8_t wait) {
-  uint16_t i, j;
-
-  for(j=0; j<256 * 5; j++) { // 5 cycles of all colors on wheel
-    for(i=0; i< strip.numPixels(); i++) {
-      strip.setPixelColor(i, Wheel(((i * 256 / strip.numPixels()) + j) & 255));
-    }
-    strip.show();
-    delay(wait);
-  }
-}
-
-void rainbow(uint8_t wait) {
-  uint16_t i, j;
-
-  for(j=0; j<256; j++) {
-    for(i=0; i<strip.numPixels(); i++) {
-      strip.setPixelColor(i, Wheel((i+j) & 255));
-    }
-    strip.show();
-    delay(wait);
-  }
-}
-
-// Input a value 0 to 255 to get a color value.
-// The colours are a transition r - g - b - back to r.
-uint32_t Wheel(byte WheelPos) {
-  WheelPos = 255 - WheelPos;
-  if(WheelPos < 85) {
-    return strip.Color(255 - WheelPos * 3, 0, WheelPos * 3,0);
-  }
-  if(WheelPos < 170) {
-    WheelPos -= 85;
-    return strip.Color(0, WheelPos * 3, 255 - WheelPos * 3,0);
-  }
-  WheelPos -= 170;
-  return strip.Color(WheelPos * 3, 255 - WheelPos * 3, 0,0);
-}
-
-uint8_t red(uint32_t c) {
-  return (c >> 8);
-}
-uint8_t green(uint32_t c) {
-  return (c >> 16);
-}
-uint8_t blue(uint32_t c) {
-  return (c);
 }
 
