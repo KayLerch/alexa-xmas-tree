@@ -23,24 +23,33 @@ the MP3 files and an IAM role with AWS IoT and Dynamo permissions. The table in 
 the thing shadow in AWS IoT will be created on the first skill invocation on the fly.
 
 So what happens on a voice user request given to an Alexa device from a technical perspective?
+
 1. User speaks to Alexa to _"open the christmas tree"_. ASR and NLU magic happens in the Alexa cloud service.
+
 2. An intent is given to the skill code hosted in AWS Lambda. You can find the code in this repo.
+
 3. If the user just desires an action like _"turn on the tree"_ or _"start the show"_ without giving
 this skill a color for the tree it looks up the last set color in Dynamo DB. If there's a color
 given the skill will persist the information in the same table. This is how Alexa keeps in mind the last set color
 of the tree. Secondly, the action and the color command is written to a thing shadow in AWS IoT.
+
 4. If the shadow is updated an MQTT message is exposed to the delta topic of the corresponding thing. The Arduino Yun
 is subscribed to that topic. Side note: The name of the thing being created by the skill code is equal
 to the skill-id coming in (all dots replaced with a dash). This might help you if you want to rebuild the project.
+
 5. The Arduino is polling on the Delta topic so it receives the commands as an MQTT message in JSON format.
 The information is extracted and the Arduino sketch performs an action with the LED strand according to what is given in the message (new color, christmas show, on, off).
+
 6. Finally, the Arduino sends an MQTT message to the Update topic of the AWS IoT thing in order to let the world know
 that the action was performed.
+
 7. The message is consumed by the AWS IoT service and the contained state information
 is written back to the thing shadow as a _reported_ state. It would be possible to also have the skill read the last tree state from the thing shadow
 instead of looking it up in Dynamo DB. The reason for this fallback approach is MQTT is asynchronous and we cannot rely on
 the Arduino to give an immediate response.
+
 8. Actually this step happens right after step 3) as the skill is decoupled from the hardware backend on purpose.
 So right after updating the thing shadow in AWS IoT the skill code returns output speech text and optionally an
 _SSML_ tag with audio contents. The MP3s which are part of Alexa's playback (christmas sounds) are stored in an AWS S3 bucket.
+
 9. Alexa reads out the text returned by the skill and plays back the audio in the response.
