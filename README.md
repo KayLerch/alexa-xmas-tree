@@ -22,7 +22,7 @@ christmas tree. The only things you really need to set up is the Lambda function
 the MP3 files and an IAM role with AWS IoT and Dynamo permissions. The table in Dynamo as well as
 the thing shadow in AWS IoT will be created on the first skill invocation on the fly.
 
-So what happens on a voice user request given to an Alexa device from a technical perspective?
+Understand what happens on a voice user request given to an Alexa device:
 
 1. User speaks to Alexa to _"open the christmas tree"_. ASR and NLU magic happens in the Alexa cloud service.
 
