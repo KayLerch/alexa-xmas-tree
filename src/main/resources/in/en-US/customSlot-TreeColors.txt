@@ -1,0 +1,34 @@
+colourful
+coloured
+colorful
+colored
+black
+white
+red
+green
+blue
+light blue
+lightblue
+light_green
+lightgreen
+yellow
+gold
+purple
+lilac
+magenta
+orange
+pink
+rose
+darkred
+dark red
+darkgreen
+dark_green
+darkblue
+dark_blue
+azure
+skyblue
+sky blue
+sky-blue
+babyblue
+baby blue
+baby-blue

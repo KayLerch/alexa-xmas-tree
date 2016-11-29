@@ -1,0 +1,62 @@
+TreeOn an
+TreeOn er soll an sein
+TreeOn an sein
+TreeOn er soll an gehen
+TreeOn an gehen
+TreeOn anschalten
+TreeOn einschalten
+
+TreeOff aus
+TreeOff er soll aus sein
+TreeOff er soll aus gehen
+TreeOff aus gehen
+TreeOff aus sein
+TreeOff ausschalten
+
+TreeColor mach {Color}
+TreeColor {Color}
+TreeColor er soll {Color} werden
+TreeColor er soll auf {Color} schalten
+TreeColor er soll {Color} scheinen
+TreeColor nach {Color}
+TreeColor nach Farbe {Color}
+TreeColor {Color} sein
+TreeColor Farbe {Color}
+TreeColor mit Farbe {Color}
+TreeColor wechsele zu {Color}
+TreeColor wechsele nach {Color}
+TreeColor wechsele auf {Color}
+TreeColor wechsele Farbe zu {Color}
+TreeColor wechsele Farbe nach {Color}
+TreeColor wechsele Farbe auf {Color}
+TreeColor schalte zu {Color}
+TreeColor schalte nach {Color}
+TreeColor schalte auf {Color}
+TreeColor schalte Farbe zu {Color}
+TreeColor schalte Farbe nach {Color}
+TreeColor schalte Farbe auf {Color}
+TreeColor stelle Farbe zu {Color}
+TreeColor stelle Farbe nach {Color}
+TreeColor stelle Farbe auf {Color}
+TreeColor stelle zu {Color}
+TreeColor stelle nach {Color}
+TreeColor stelle auf {Color}
+TreeColor setze Farbe zu {Color}
+TreeColor setze Farbe nach {Color}
+TreeColor setze Farbe auf {Color}
+TreeColor setze zu {Color}
+TreeColor setze nach {Color}
+TreeColor setze auf {Color}
+
+XmasShow Show
+XmasShow Lichtershow
+XmasShow Revue
+XmasShow nach einer Show
+XmasShow nach einer Lichtershow
+XmasShow nach einer Revue
+XmasShow mit Show
+XmasShow mit Lichtershow
+XmasShow mit Revue
+XmasShow mit einer Show
+XmasShow mit einer Lichtershow
+XmasShow mit einer Revue

@@ -1,0 +1,45 @@
+TreeOn on
+TreeOn to turn on
+TreeOn to switch on
+TreeOn to activate
+TreeOn to wake up
+
+TreeOff off
+TreeOff to turn off
+TreeOff to switch off
+TreeOff to deactivate
+TreeOff to sleep
+
+TreeColor do {Color}
+TreeColor {Color}
+TreeColor he should turn {Color}
+TreeColor he should turn to {Color}
+TreeColor he should turn to colour {Color}
+TreeColor to {Color}
+TreeColor to colour {Color}
+TreeColor he should be {Color}
+TreeColor colour {Color}
+TreeColor with colour {Color}
+TreeColor change to {Color}
+TreeColor he should change to {Color}
+TreeColor to change to {Color}
+TreeColor switch to {Color}
+TreeColor he should switch to {Color}
+TreeColor to switch to {Color}
+TreeColor switch to colour {Color}
+TreeColor he should switch to colour {Color}
+TreeColor to switch to colour {Color}
+TreeColor set to {Color}
+TreeColor he should set to {Color}
+TreeColor to set to {Color}
+TreeColor set to colour {Color}
+TreeColor he should set to colour {Color}
+TreeColor to set to colour {Color}
+
+XmasShow show
+XmasShow light show
+XmasShow revue
+XmasShow for a show
+XmasShow for a light show
+XmasShow with show
+XmasShow with light show

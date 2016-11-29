@@ -1,0 +1,9 @@
+arduino/opkg.conf
+audio/xmas*-raw.mp3
+src/main/resources/my.app.properties
+src/test
+target/
+.mvn/
+.idea
+*.iml
+

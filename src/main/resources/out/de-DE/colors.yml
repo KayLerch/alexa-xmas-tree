@@ -1,0 +1,64 @@
+bunt: "1_1_1"
+1_1_1: "bunt"
+
+schwarz: "0_0_0"
+0_0_0: "schwarz"
+
+weiss: "255_255_255"
+255_255_255: "schwarz"
+
+rot: "255_0_0"
+255_0_0: "rot"
+
+grün: "0_255_0"
+0_255_0: "grün"
+
+blau: "0_0_255"
+0_0_255: "blau"
+
+hellblau: "30_98_232"
+hell_blau: "30_98_232"
+30_98_232: "hellblau"
+
+hellgrün: "157_230_3"
+hell_grün: "157_230_3"
+157_230_3: "hellgrün"
+
+gelb: "124_114_32"
+124_114_32: "gelb"
+
+gold: "216_199_29"
+216_199_29: "gold"
+
+lila: "232_19_158"
+232_19_158: "lila"
+
+magenta: "237_0_185"
+237_0_185: "magenta"
+
+orange: "160_52_3"
+160_52_3: "orange"
+
+pink: "200_14_30"
+rosa: "200_14_30"
+200_14_30: "rosa"
+
+dunkelrot: "90_0_0"
+dunkel_rot: "90_0_0"
+90_0_0: "dunkelrot"
+
+dunkelgrün: "0_90_0"
+dunkel_grün: "0_90_0"
+0_90_0: "dunkelgrün"
+
+dunkelblau: "0_0_90"
+dunkel_blau: "0_0_90"
+0_0_90: "dunkelblau"
+
+himmelblau: "123_116_190"
+himmel_blau: "123_116_190"
+babyblau: "123_116_190"
+baby_blau: "123_116_190"
+azurblau: "123_116_190"
+azur_blau: "123_116_190"
+123_116_190: "himmelblau"

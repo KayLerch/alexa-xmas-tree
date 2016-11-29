@@ -1,0 +1,33 @@
+SayWelcome:
+  - "[Frohe|Gesegnete|Fröhliche] [Weihnachten|Weihnacht]! {mp3}"
+
+SayTreeOn:
+  - "[Frohe|Gesegnete|Fröhliche] [Weihnachten|Weihnacht]! {mp3}"
+
+SayTreeOff:
+  - "[Das Licht|Der Baum] [erlischt|geht aus]."
+
+SayColorChange:
+  - "Es erscheint der Baum in {color}! {mp3}"
+  - "Es werde {color}! {mp3}"
+  - "Weihnachten wird {color}! {mp3}"
+
+SayColorUnknown:
+  - "Auf diese Farbe bin ich nicht vorbereitet. Probiere etwas anderes."
+  - "Diese Farbe habe ich nicht verstanden. Probiere etwas anderes."
+  - "Da hast du mich auf dem falschen Fuß erwischt. Probiere etwas anderes."
+
+SayXmasShow:
+  - "{mp3}"
+
+SayOk:
+  - "Ok"
+
+SayHelp:
+  Utterances:
+    - "Gebe mir eine Farbe, um den Baum in einem anderen Licht erscheinen zu lassen. Oder erfreue dich an einer Lichtershow und sage <p>Starte Show</p>"
+  Reprompts:
+    - "Sage zum Beispiel <p>Schalte auf rot</p> oder aber <p>Starte Show</p>"
+
+SaySorry:
+  - "[Entschuldige|Sorry|Tut mir leid], etwas ist schief hier [gegangen|gelaufen|gewickelt]."

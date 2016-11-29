@@ -1,0 +1,30 @@
+SayWelcome:
+  - "Merry christmas! {mp3}"
+
+SayTreeOn:
+  - "Merry christmas! {mp3}"
+
+SayTreeOff:
+  - "[The light|The tree] turns off."
+
+SayColorChange:
+  - "The christmas tree turns into {color}! {mp3}"
+  - "{color} christmas ahead! {mp3}"
+
+SayColorUnknown:
+  - "I don't support this color. Try another one."
+
+SayXmasShow:
+  - "{mp3}"
+
+SayOk:
+  - "Ok"
+
+SayHelp:
+  Utterances:
+    - "Provide this skill a color to change the tree lights. You could also  und sage <p>Starte Show</p>"
+  Reprompts:
+    - "For example you could say <p>Turn red</p> or <p>Start a Show</p>"
+
+SaySorry:
+  - "[Sorry|Excuse me], something went wrong."
