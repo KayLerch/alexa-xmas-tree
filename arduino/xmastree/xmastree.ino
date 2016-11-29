@@ -212,7 +212,7 @@ void changeColor(uint8_t r, uint8_t g, uint8_t b, int delayMs)
 
 void changeColorPartial(uint8_t r, uint8_t g, uint8_t b, int delayMs, int to) 
 {
-  for(uint8_t i=0; i<to; i++) {
+  for(uint8_t i=0; i < to; i++) {
     // look for colorful
     if (r == 1 && g == 1 && b == 1) {
       strip.setPixelColor(i, strip.Color(random(0, 255), random(0, 255), random(0, 255)));
@@ -247,7 +247,7 @@ void changeColorBackwards(uint8_t r, uint8_t g, uint8_t b, int delayMs)
 
 void changeColorBackwardsPartial(uint8_t r, uint8_t g, uint8_t b, int delayMs, int to) 
 {
-  for(uint8_t i=strip.numPixels()-1; i>=to; i--) {
+  for(uint8_t i=strip.numPixels()-1; i > to; i--) {
     // look for colorful
     if (r == 1 && g == 1 && b == 1) {
       strip.setPixelColor(i, strip.Color(random(0, 255), random(0, 255), random(0, 255)));
