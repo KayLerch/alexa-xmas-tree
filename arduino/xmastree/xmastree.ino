@@ -71,45 +71,25 @@ void connect() {
         if((rc = myClient.connect()) == 0) {
           success_connect = true;
   
-          // indicate success with green lights
-          strip.setPixelColor(0, strip.Color(0, 255, 0));
-          strip.show();
-          delay(1000);
-          strip.setPixelColor(0, strip.Color(0, 0, 0));
-          strip.show();
+          light_status_led(0, 255, 0, 1000);
           
           print_log("shadow init", myClient.shadow_init(AWS_IOT_MY_THING_NAME));
           print_log("register thing shadow delta function", myClient.shadow_register_delta_func(AWS_IOT_MY_THING_NAME, msg_callback_delta));
         }
         else {
-          // indicate error with red lights
-          strip.setPixelColor(0, strip.Color(255, 0, 0));
-          strip.show();
-          delay(1000);
-          strip.setPixelColor(0, strip.Color(0, 0, 0));
-          strip.show();
+          light_status_led(255, 0, 0, 1000);
           Serial.println(F("Connect failed!"));
           Serial.println(rc);
         }
       }
       else {
-        // indicate error with red lights
-        strip.setPixelColor(0, strip.Color(255, 0, 0));
-        strip.show();
-        delay(1000);
-        strip.setPixelColor(0, strip.Color(0, 0, 0));
-        strip.show();
+        light_status_led(255, 0, 0, 1000);
         Serial.println(F("Config failed!"));
         Serial.println(rc);
       }
     }
     else {
-      // indicate error with red lights
-      strip.setPixelColor(0, strip.Color(255, 0, 0));
-      strip.show();
-      delay(1000);
-      strip.setPixelColor(0, strip.Color(0, 0, 0));
-      strip.show();
+      light_status_led(255, 0, 0, 1000);
       Serial.println(F("Setup failed!"));
       Serial.println(rc);
     }
@@ -123,9 +103,19 @@ void loop() {
       Serial.println(F("Yield failed."));
       reconnect();
     }
-    delay(1000); // check for incoming delta per 100 ms
-    //Serial.println(F("Looping..."));
+    else {
+      light_status_led(0, 0, 255, 500);
+      delay(500);
+    }
   }
+}
+
+void light_status_led(int r, int g, int b, int delayMs) {
+  strip.setPixelColor(0, strip.Color(r, g, b));
+  strip.show();
+  delay(delayMs);
+  strip.setPixelColor(0, strip.Color(0, 0, 0));
+  strip.show();
 }
 
 bool print_log(const char* src, int code) {
