@@ -18,7 +18,9 @@ following components:
 
 ####The Software solution
 The following image illustrates a typical roundtrip to handle a voice user request.
+
 ![](docs/solution-architecture.png)
+
 The solution leverages a bunch of AWS cloud services to communicate with the hardware backend - the
 christmas tree. The only things you really need to set up is the Lambda function, an S3 bucket containing
 the MP3 files and an IAM role with AWS IoT and Dynamo permissions. The table in Dynamo as well as
