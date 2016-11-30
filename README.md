@@ -57,3 +57,21 @@ So right after updating the thing shadow in AWS IoT the skill code returns outpu
 _SSML_ tag with audio contents. The MP3s which are part of Alexa's playback (christmas sounds) are stored in an AWS S3 bucket.
 
 9. Alexa reads out the text returned by the skill and plays back the audio in the response.
+
+####Status indication
+While Arduino does its work it lets you know of its current state over the first LED in the strand.
+* a one time red blinking light indicates a AWS IoT connection setup failure
+* a two times red blinking light indicates a failed AWS IoT connection attempt
+* a three times red blinking light indicates a failed AWS IoT connection configuration
+* a green flashlight indicates a successful connection to AWS IoT
+* a blue flashlight indicates constant polling to the AWS IoT topic
+* a yellow flashlight indicates an error while polling the AWS IoT topic
+
+On startup you might see red flashlights for the period of time it takes for the Arduino to connect to
+the Wifi. If Wifi is connected there's the green flashlight followed by a constantly blinking blue light to
+indicate the tree is ready for commands.
+
+If yellow is blinking the AWS IoT topic could not be reached. If that happens (e.g. Arduino lost Wifi connection)
+it keeps trying for nine more times until it automatically tries to reconnect. That said, after ten times yellow flashlight
+there should be red / green flashlight for reconnection progress. Once the Arduino reconnects to the Wifi and AWS IoT
+is reached again, the blue flashlights come up.

@@ -16,6 +16,7 @@ aws_iot_mqtt_client myClient; // init iot_mqtt_client
 
 char msg[32]; // read-write buffer
 int cnt = 0; // loop counts
+int numYieldFailed = 0;
 int rc = -100; // return value placeholder
 bool success_connect = false; // whether it is connected
 char JSON_buf[100];
@@ -42,10 +43,11 @@ void setup() {
   Serial.begin(115200);
   //while(!Serial);
 
-  delay(3000);
-
   strip.setBrightness(BRIGHTNESS);
   strip.begin();
+  strip.show();
+  // initial color set is orange
+  changeColorBackwards(160, 52, 3, 30);
   strip.show();
   
   char curr_version[80];
@@ -66,6 +68,9 @@ void reconnect() {
 }
 
 void connect() {
+  // append random number to client id so that it won't clash with the last connection
+  Serial.println("Try connect with client-id: " + String(AWS_IOT_CLIENT_ID));
+  
   if((rc = myClient.setup(AWS_IOT_CLIENT_ID, true, MQTTv311, true)) == 0) {
       if((rc = myClient.configWss(AWS_IOT_MQTT_HOST, AWS_IOT_MQTT_PORT, AWS_IOT_ROOT_CA_PATH)) == 0) {
         if((rc = myClient.connect()) == 0) {
@@ -77,13 +82,22 @@ void connect() {
           print_log("register thing shadow delta function", myClient.shadow_register_delta_func(AWS_IOT_MY_THING_NAME, msg_callback_delta));
         }
         else {
-          light_status_led(255, 0, 0, 1000);
+          // blink tw0 times red to indiciate config failed
+          light_status_led(255, 0, 0, 330);
+          delay(330);
+          light_status_led(255, 0, 0, 330);
           Serial.println(F("Connect failed!"));
           Serial.println(rc);
         }
       }
       else {
-        light_status_led(255, 0, 0, 1000);
+        // blink three times red to indiciate config failed
+        light_status_led(255, 0, 0, 200);
+        delay(200);
+        light_status_led(255, 0, 0, 200);
+        delay(200);
+        light_status_led(255, 0, 0, 200);
+        
         Serial.println(F("Config failed!"));
         Serial.println(rc);
       }
@@ -100,16 +114,23 @@ void connect() {
 void loop() {
   if(success_connect) {
     if(myClient.yield()) {
+      light_status_led(124, 114, 32, 500); // indicate with yellow
       Serial.println(F("Yield failed."));
-      reconnect();
+      if (numYieldFailed++ > 9) {
+        // only reconnect if ten invalid attempts in a row
+        reconnect(); 
+      }
     }
     else {
       light_status_led(0, 0, 255, 500);
-      delay(500);
+      // reset error counter
+      numYieldFailed = 0;
     }
+    delay(500);
   }
 }
 
+// the first led of the strand is to show runtime state
 void light_status_led(int r, int g, int b, int delayMs) {
   strip.setPixelColor(0, strip.Color(r, g, b));
   strip.show();
@@ -201,7 +222,7 @@ void msg_callback_delta(char* src, unsigned int len, Message_status_t flag) {
     }
     else {
         Serial.println("Unexpected mode given - do nothing.");
-    }
+    } 
   }
 }
 
