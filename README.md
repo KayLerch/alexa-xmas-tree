@@ -1,5 +1,7 @@
 ## An Alexa-controlled Christmas Tree
 
+[![Join the chat at https://gitter.im/alexa-xmas-tree/Lobby](https://badges.gitter.im/alexa-xmas-tree/Lobby.svg)](https://gitter.im/alexa-xmas-tree/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ![](docs/hardware-setup.png)
 
 Here you can find the sources of a custom Alexa skill that controls an LED strand on a Christmas
