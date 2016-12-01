@@ -89,10 +89,10 @@ These are the requirements in order to be able to rebuild the solution
 2. In [Amazon developer account](https://developer.amazon.com) after you logged in go to Alexa > Alexa Skills Kit > Add a new skill
 
 3. Set up the _Skill information_ with
-* __Skill type__: Custom interaction model
-* __Language__: Of your choice (you could add more later on)
-* __Name__: Christmas Tree (but feel free to choose another name)
-* __Invocation Name__: christmas tree (for English) or weihnachtsbaum (for German)
+    * __Skill type__: Custom interaction model
+    * __Language__: Of your choice (you could add more later on)
+    * __Name__: Christmas Tree (but feel free to choose another name)
+    * __Invocation Name__: christmas tree (for English) or weihnachtsbaum (for German)
 
 4. Click _Next_ and go back to _Skill information_ to copy the _ApplicationId_. You will need it in the next steps
 
@@ -101,41 +101,40 @@ These are the requirements in order to be able to rebuild the solution
 6. Upload all the MP3 files you can find in the _audio_ folder to the newly created bucket. Secondly, select the freshly uploaded files in the S3 web interface, go to _Actions_ and _Make Public_. Finally,
 in _Properties_ of your bucket go to _Permissions_ and _Add CORS configuration_ where you would paste and save this xml portion:
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
-    <CORSRule>
-        <AllowedOrigin>http://ask-ifr-download.s3.amazonaws.com</AllowedOrigin>
-        <AllowedMethod>GET</AllowedMethod>
-    </CORSRule>
-</CORSConfiguration>
-```
+    ```xml
+    <CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+        <CORSRule>
+            <AllowedOrigin>http://ask-ifr-download.s3.amazonaws.com</AllowedOrigin>
+            <AllowedMethod>GET</AllowedMethod>
+        </CORSRule>
+    </CORSConfiguration>
+    ```
 
 7. Next, in AWS go to IAM and create a new role called something like _"Xmas-Lambda-Execution"_. To keep things simple just add these three managed policies to it (later you would
 go for the least privileges approach and adjust permission as needed)
-* AmazonS3FullAccess
-* AmazonDynamoDBFullAccess
-* AWSIoTFullAccess
+    * AmazonS3FullAccess
+    * AmazonDynamoDBFullAccess
+    * AWSIoTFullAccess
 
 8. Create another role in IAM with name _"Xmas-Arduino-Access" and add AWSIoTFullAccess as the managed policy.
 
 9. Create a technical user in IAM and add it to the _"Xmas-Arduino-Access"_ role. Save the credentials (AccessId and AccessSecret) provided at the end of the creation process.
 
 10. Now edit the first two configuration items in the [app.properties](/src/main/resources/app.properties) file in your local repo.
-* __AlexaAppId__ should be the the applicationId you got in step 4.
-* __S3BucketUrl__ should be the url to the bucket you created in step 5.
+    * __AlexaAppId__ should be the the applicationId you got in step 4.
+    * __S3BucketUrl__ should be the url to the bucket you created in step 5.
 
 11. Now _mvn package_ the project and you should get a JAR file.
 
 12. In AWS create a new Lambda function for Java8 and choose the existing execution role you created in step 7. Upload the JAR file to this function. The Lambda event trigger must be set to _Alexa skills kit_. If you don't see in the list you are in the wrong AWS region. Make sure to create the Lambda function in either Ireland or N. Virginia.
 
 13. Go back to your skill in the [Amazon developer console](https://developer.amazon.com) and proceed with the skill configuration.
-* The _Interaction model_ section you set up just be copy and paste what you can find in the [resources/in](/src/main/java/resources/in)-folder in this repo. Don't forget to create a custom slot with name _TreeColors_ and add values of one of the customSlot-TreeColors.txt files.
-* In the _Configuration_ section you point to your Lambda function you created in step 12. The ARN can be obtained in the top right corner in AWS Lambda details page.
-* In _Test_ section just make sure test is _enabled_
-* Execute a test in the _Service simulator_ in the _Test_ section. Enter the utterance _Start christmas tree_ (_Starte Weihnachtsbaum_ for German). The first invocation takes
- its time because what happenes in the background is an AWS Dynamo-table is built and an AWS IoT thing is created as well. This initial test
- is mandatory for the last step because the Arduino needs to have a connection to an MQTT topic which is created with the IoT thing.
+    * The _Interaction model_ section you set up just be copy and paste what you can find in the [resources/in](/src/main/java/resources/in)-folder in this repo. Don't forget to create a custom slot with name _TreeColors_ and add values of one of the customSlot-TreeColors.txt files.
+    * In the _Configuration_ section you point to your Lambda function you created in step 12. The ARN can be obtained in the top right corner in AWS Lambda details page.
+    * In _Test_ section just make sure test is _enabled_
+    * Execute a test in the _Service simulator_ in the _Test_ section. Enter the utterance _Start christmas tree_ (_Starte Weihnachtsbaum_ for German). The first invocation takes
+     its time because what happenes in the background is an AWS Dynamo-table is built and an AWS IoT thing is created as well. This initial test
+     is mandatory for the last step because the Arduino needs to have a connection to an MQTT topic which is created with the IoT thing.
 
 14. Next, set up your Arduino Yun and connect it to a Wifi (Howto: https://www.arduino.cc/en/Guide/ArduinoYun)
 
@@ -146,13 +145,13 @@ go for the least privileges approach and adjust permission as needed)
  talking about are the ones you got in step 9.
 
 17. Edit the [aws_iot_config.h](/arduino/xmastree/aws_iot_config.h) in your local repo and adjust values for:
-* __AWS_IOT_MQTT_HOST__ is specific to your account. The easiest way to obtain your endpoint is to use the following command in [AWS CLI](https://aws.amazon.com/cli/):
-```bash
-$ aws iot describe-endpoint
-```
-* __AWS_IOT_MY_THING_NAME__ needs to be the applicationId you got in step 4. Make sure you replace all dots in that id with dashes.
-* __AWS_IOT_ROOT_CA_FILENAME__ name of the root certificate you uploaded to the Arduino as instructed in step 14.
+    * __AWS_IOT_MQTT_HOST__ is specific to your account. The easiest way to obtain your endpoint is to use the following command in [AWS CLI](https://aws.amazon.com/cli/):
+    ```bash
+    $ aws iot describe-endpoint
+    ```
+    * __AWS_IOT_MY_THING_NAME__ needs to be the applicationId you got in step 4. Make sure you replace all dots in that id with dashes.
+    * __AWS_IOT_ROOT_CA_FILENAME__ name of the root certificate you uploaded to the Arduino as instructed in step 14.
 
 18. With Arduino IDE upload the sketch you can find in the [arduino](/arduino)-folder in this repo.
-* You should see progress and status looking at the first LED on the strand. If your Arduino is still connected
-to your computer you could also use the _Service Monitor_ tool to get detailed information and serial output.
+    * You should see progress and status looking at the first LED on the strand. If your Arduino is still connected
+    to your computer you could also use the _Service Monitor_ tool to get detailed information and serial output.
