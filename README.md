@@ -1,7 +1,5 @@
 ## An Alexa-controlled Christmas Tree
 
-[![Join the chat at https://gitter.im/alexa-xmas-tree/Lobby](https://badges.gitter.im/alexa-xmas-tree/Lobby.svg)](https://gitter.im/alexa-xmas-tree/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) if you have any question.
-
 ![](docs/hardware-setup.png)
 
 Here you can find the sources of a custom Alexa skill that controls an LED strand on a Christmas
@@ -79,6 +77,10 @@ there should be red / green flashlight for reconnection progress. Once the Ardui
 is reached again, the blue flashlights come up.
 
 ###How to rebuild
+If you have any question reach out to the author via
+
+[![Join the chat at https://gitter.im/alexa-xmas-tree/Lobby](https://badges.gitter.im/alexa-xmas-tree/Lobby.svg)](https://gitter.im/alexa-xmas-tree/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 These are the requirements in order to be able to rebuild the solution
 * All the hardware listed in above section
 * An [AWS account](https://aws.amazon.com) for the backend resources
