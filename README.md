@@ -129,7 +129,7 @@ go for the least privileges approach and adjust permission as needed)
 
 11. Now _mvn package_ the project and you should get a JAR file.
 
-12. In AWS create a new Lambda function for Java8 and choose the existing execution role you created in step 7. Upload the JAR file to this function. The Lambda event trigger must be set to _Alexa skills kit_. If you don't see in the list you are in the wrong AWS region. Make sure to create the Lambda function in either Ireland or N. Virginia.
+12. In AWS create a new Lambda function for Java8 and choose the existing execution role you created in step 7. Upload the JAR file to this function. The Lambda event trigger must be set to _Alexa skills Kit_. If you don't see it in the list you are in the wrong AWS region. Make sure to create the Lambda function in either Ireland or N. Virginia.
 
 13. Go back to your skill in the [Amazon developer console](https://developer.amazon.com) and proceed with the skill configuration.
     * The _Interaction model_ section you set up just be copy and paste what you can find in the [resources/in](/src/main/java/resources/in)-folder in this repo. Don't forget to create a custom slot with name _TreeColors_ and add values of one of the customSlot-TreeColors.txt files.
