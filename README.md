@@ -1,6 +1,6 @@
 ## An Alexa-controlled Christmas Tree
 
-[![Join the chat at https://gitter.im/alexa-xmas-tree/Lobby](https://badges.gitter.im/alexa-xmas-tree/Lobby.svg)](https://gitter.im/alexa-xmas-tree/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/alexa-xmas-tree/Lobby](https://badges.gitter.im/alexa-xmas-tree/Lobby.svg)](https://gitter.im/alexa-xmas-tree/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) if you have any question.
 
 ![](docs/hardware-setup.png)
 
