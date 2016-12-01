@@ -15,6 +15,7 @@ following components:
 * 3 x [Jumper wires](https://www.amazon.com/dp/B01EV70C78)
 * 1 x [Power Supply Adapter and 2.1mm x 5.5mm DC Connector](https://www.amazon.com/dp/B00ZU9MZ1S)
 * 1 x [Micro-USB to USB Cable](https://www.amazon.com/dp/B00NH13O7K)
+* 1 x [Amazon Echo](https://www.amazon.com/dp/B00X4WHP5E) or [Amazon Dot](https://www.amazon.com/dp/B015TJD0Y4) or [Amazon Tap](https://www.amazon.com/dp/B01BH83OOM)
 
 ####The Software solution
 The following image illustrates a typical roundtrip to handle a voice user request.
