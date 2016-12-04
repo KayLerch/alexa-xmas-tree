@@ -1,5 +1,6 @@
 ## An Alexa-controlled Christmas Tree
 
+See it live in action: [Demo video](https://www.youtube.com/watch?v=acqHYu_rtrA)
 ![](docs/hardware-setup.png)
 
 Here you can find the sources of a custom Alexa skill that controls an LED strand on a Christmas
