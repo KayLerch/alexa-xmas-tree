@@ -19,7 +19,7 @@ abstract class AbstractIntentHandler implements AlexaIntentHandler {
 
     @Override
     public AlexaOutput handleError(final AlexaRequestHandlerException exception) {
-        return null;
+        return AlexaOutput.tell("SaySorry").build();
     }
 
     static void sendIotHook(final AlexaInput input, final TreeState treeState) throws AlexaStateException {
