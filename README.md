@@ -120,9 +120,9 @@ go for the least privileges approach and adjust permission as needed)
     * AmazonDynamoDBFullAccess
     * AWSIoTFullAccess
 
-8. Create another role in IAM with name _"Xmas-Arduino-Access" and add AWSIoTFullAccess as the managed policy.
+8. Create a group in IAM with name _"Xmas-Arduino-Access"_ and add AWSIoTFullAccess as the managed policy.
 
-9. Create a technical user in IAM and add it to the _"Xmas-Arduino-Access"_ role. Save the credentials (AccessId and AccessSecret) provided at the end of the creation process.
+9. Create a user in IAM for programmatic access and add it to the _"Xmas-Arduino-Access"_ group. Save the credentials (AccessId and AccessSecret) provided at the end of the creation process.
 
 10. Now edit the first two configuration items in the [app.properties](/src/main/resources/app.properties) file in your local repo.
     * __AlexaAppId__ should be the the applicationId you got in step 4.
@@ -130,7 +130,7 @@ go for the least privileges approach and adjust permission as needed)
 
 11. Now _mvn package_ the project and you should get a JAR file.
 
-12. In AWS create a new Lambda function for Java8 and choose the existing execution role you created in step 7. Upload the JAR file to this function. The Lambda event trigger must be set to _Alexa skills Kit_. If you don't see it in the list you are in the wrong AWS region. Make sure to create the Lambda function in either Ireland or N. Virginia.
+12. In AWS create a new Lambda function for Java8 and choose the existing execution role you created in step 7. Upload the JAR file to this function. The Lambda event trigger must be set to _Alexa skills Kit_. If you don't see it in the list you are in the wrong AWS region. Make sure to create the Lambda function in either Ireland or N. Virginia. If you're using my code the  handler must be set to _io.klerch.alexa.xmastree.skill.XmasSpeechletHandler_.
 
 13. Go back to your skill in the [Amazon developer console](https://developer.amazon.com) and proceed with the skill configuration.
     * The _Interaction model_ section you set up just be copy and paste what you can find in the [resources/in](/src/main/java/resources/in)-folder in this repo. Don't forget to create a custom slot with name _TreeColors_ and add values of one of the customSlot-TreeColors.txt files.
