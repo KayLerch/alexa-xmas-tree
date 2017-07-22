@@ -8,7 +8,7 @@ tree. This repo contains:
 * Java code for an AWS Lambda function which is the endpoint for the Alexa skill
 * An Arduino sketch which sits between AWS IoT and a WS2811 LED strand. The sketch is optimized for running on an Arduino Yun.
 
-####The Hardware setup
+#### The Hardware setup
 If you want to build your own Alexa-controlled christmas tree with help of these sources you need specific hardware. This project used the
 following components:
 * 1 x [Arduino Yun with Linino OS](https://www.arduino.cc/en/Main/ArduinoBoardYun)
@@ -18,7 +18,7 @@ following components:
 * 1 x [Micro-USB to USB Cable](https://www.amazon.com/dp/B00NH13O7K)
 * 1 x [Amazon Echo](https://www.amazon.com/dp/B00X4WHP5E) or [Amazon Dot](https://www.amazon.com/dp/B015TJD0Y4) or [Amazon Tap](https://www.amazon.com/dp/B01BH83OOM)
 
-####The Software solution
+#### The Software solution
 The following image illustrates a typical roundtrip to handle a voice user request.
 
 ![](docs/solution-architecture.png)
@@ -60,7 +60,7 @@ _SSML_ tag with audio contents. The MP3s which are part of Alexa's playback (chr
 
 9. Alexa reads out the text returned by the skill and plays back the audio in the response.
 
-####Status indication
+#### Status indication
 While Arduino does its work it lets you know of its current state over the first LED in the strand.
 * a one time red blinking light indicates a AWS IoT connection setup failure
 * a two times red blinking light indicates a failed AWS IoT connection attempt
@@ -78,7 +78,7 @@ it keeps trying for nine more times until it automatically tries to reconnect. T
 there should be red / green flashlight for reconnection progress. Once the Arduino reconnects to the Wifi and AWS IoT
 is reached again, the blue flashlights come up.
 
-###How to rebuild
+### How to rebuild
 If you have any question reach out to the author via
 
 [![Join the chat at https://gitter.im/alexa-xmas-tree/Lobby](https://badges.gitter.im/alexa-xmas-tree/Lobby.svg)](https://gitter.im/alexa-xmas-tree/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
